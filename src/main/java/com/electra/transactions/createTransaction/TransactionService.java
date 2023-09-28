@@ -4,6 +4,7 @@ package com.electra.transactions.createTransaction;
 import com.electra.transactions.api.caller.TransactionApiCaller;
 import com.electra.transactions.createTransaction.dto.TransactionRequest;
 import com.electra.transactions.createTransaction.dto.TransactionResponse;
+import com.electra.transactions.exceptions.TransactionNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,14 @@ public class TransactionService {
         this.transactionApiCaller = transactionApiCaller;
     }
 
-    public TransactionResponse callTransactionBss(TransactionRequest transactionRequest) throws IOException {
+    public TransactionResponse callTransactionApi(TransactionRequest transactionRequest) {
         com.electra.transactions.api.signature.TransactionResponse transactionResponse = null;
         try {
             transactionResponse = transactionApiCaller.createTransaction(transactionRequest);
+        } catch (NullPointerException e) {
+            throw new TransactionNotFoundException(e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error("Error in callTransactionApi ", e.getMessage());
         }
         return TransactionResponse.builder()
                 .transactionStatus(transactionResponse.transactionStatus())

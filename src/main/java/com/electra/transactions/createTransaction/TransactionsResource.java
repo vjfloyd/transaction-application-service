@@ -23,7 +23,7 @@ public class TransactionsResource {
     @SneakyThrows
     @PostMapping
     private ResponseEntity<TransactionResponse> createTransaction(@Valid @RequestBody TransactionRequest transactionRequest){
-        TransactionResponse transactionResponse = transactionService.callTransactionBss(transactionRequest);
+        TransactionResponse transactionResponse = transactionService.callTransactionApi(transactionRequest);
         return new ResponseEntity<>(transactionResponse, HttpStatus.CREATED);
     }
 
