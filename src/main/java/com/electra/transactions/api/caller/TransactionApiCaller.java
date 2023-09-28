@@ -2,7 +2,7 @@ package com.electra.transactions.api.caller;
 
 import com.electra.transactions.api.signature.TransactionApi;
 import com.electra.transactions.api.signature.TransactionResponse;
-import com.electra.transactions.createTransaction.dto.TransactionRequest;
+import com.electra.transactions.createTransaction.dto.TransactionApiRequest;
 import com.electra.transactions.util.globalVariables.PropertiesEnv;
 import org.springframework.stereotype.Component;
 import retrofit2.Call;
@@ -19,7 +19,7 @@ public class TransactionApiCaller {
         this.propertiesEnv = propertiesEnv;
     }
 
-    public TransactionResponse createTransaction(TransactionRequest transactionRequest) throws IOException {
+    public TransactionResponse createTransaction(TransactionApiRequest transactionRequest) throws IOException {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(propertiesEnv.getApiPath())
                  .addConverterFactory(GsonConverterFactory.create()).build();
         TransactionApi transactionApi = retrofit.create(TransactionApi.class);

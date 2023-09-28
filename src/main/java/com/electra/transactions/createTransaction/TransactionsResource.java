@@ -1,7 +1,7 @@
 package com.electra.transactions.createTransaction;
 
 
-import com.electra.transactions.createTransaction.dto.TransactionRequest;
+import com.electra.transactions.createTransaction.dto.TransactionApiRequest;
 import com.electra.transactions.createTransaction.dto.TransactionResponse;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
@@ -22,7 +22,7 @@ public class TransactionsResource {
 
     @SneakyThrows
     @PostMapping
-    private ResponseEntity<TransactionResponse> createTransaction(@Valid @RequestBody TransactionRequest transactionRequest){
+    private ResponseEntity<TransactionResponse> createTransaction(@Valid @RequestBody TransactionApiRequest transactionRequest){
         TransactionResponse transactionResponse = transactionService.callTransactionApi(transactionRequest);
         return new ResponseEntity<>(transactionResponse, HttpStatus.CREATED);
     }

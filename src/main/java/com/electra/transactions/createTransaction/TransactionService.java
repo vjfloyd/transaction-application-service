@@ -2,7 +2,7 @@ package com.electra.transactions.createTransaction;
 
 
 import com.electra.transactions.api.caller.TransactionApiCaller;
-import com.electra.transactions.createTransaction.dto.TransactionRequest;
+import com.electra.transactions.createTransaction.dto.TransactionApiRequest;
 import com.electra.transactions.createTransaction.dto.TransactionResponse;
 import com.electra.transactions.exceptions.TransactionNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class TransactionService {
         this.transactionApiCaller = transactionApiCaller;
     }
 
-    public TransactionResponse callTransactionApi(TransactionRequest transactionRequest) {
+    public TransactionResponse callTransactionApi(TransactionApiRequest transactionRequest) {
         com.electra.transactions.api.signature.TransactionResponse transactionResponse = null;
         try {
             transactionResponse = transactionApiCaller.createTransaction(transactionRequest);

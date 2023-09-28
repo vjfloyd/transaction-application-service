@@ -1,6 +1,6 @@
 package com.electra.transactions.api.signature;
 
-import com.electra.transactions.createTransaction.dto.TransactionRequest;
+import com.electra.transactions.createTransaction.dto.TransactionApiRequest;
 import retrofit2.Call;
 
 import retrofit2.http.Body;
@@ -10,6 +10,6 @@ import retrofit2.http.POST;
 public interface TransactionApi {
     @Headers({ "Accept: application/json" })
     @POST("v1/transactions")
-    Call<TransactionResponse> createTransaction(@Body TransactionRequest transactionRequest);
+    Call<TransactionResponse> createTransaction(@Body TransactionApiRequest transactionRequest);
 
 }
